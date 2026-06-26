@@ -11,7 +11,7 @@ This integration uses the storefront API (SFAPI) [predictiveSearch](https://shop
 
 ![alt text](./predictiveSearch.jpg)
 
-## Componentss
+## Components
 
 | File                                                                                             | Description                                                                                                                                            |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
