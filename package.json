@@ -1,5 +1,5 @@
 {
-  "name": "coolshred",
+  "name": "hawker-store",
   "private": true,
   "sideEffects": false,
   "version": "2026.4.3",
@@ -7,10 +7,13 @@
   "scripts": {
     "build": "shopify hydrogen build --codegen",
     "dev": "shopify hydrogen dev --codegen",
+    "format": "prettier --write . && prettier --check .",
     "preview": "shopify hydrogen preview --build",
     "lint": "eslint --no-error-on-unmatched-pattern .",
     "typecheck": "react-router typegen && tsc --noEmit",
-    "codegen": "shopify hydrogen codegen && react-router typegen"
+    "codegen": "shopify hydrogen codegen && react-router typegen",
+    "prepare": "husky",
+    "commit": "cz"
   },
   "prettier": "@shopify/prettier-config",
   "dependencies": {
@@ -25,6 +28,8 @@
     "tailwindcss": "^4.1.6"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.5.3",
+    "@commitlint/config-conventional": "^20.5.3",
     "@eslint/compat": "^1.2.5",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
@@ -43,6 +48,8 @@
     "@types/react-dom": "^18.3.7",
     "@typescript-eslint/eslint-plugin": "^8.21.0",
     "@typescript-eslint/parser": "^8.21.0",
+    "commitizen": "^4.3.2",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-import-resolver-typescript": "^3.7.0",
@@ -54,7 +61,11 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "globals": "^15.14.0",
     "graphql-config": "^5.0.3",
-    "prettier": "^3.4.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.5",
+    "prettier-plugin-packagejson": "^3.0.2",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "^5.9.2",
     "vite": "^8.0.1"
   },
