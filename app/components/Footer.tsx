@@ -17,14 +17,22 @@ export function Footer({
     <Suspense>
       <Await resolve={footerPromise}>
         {(footer) => (
-          <footer className="footer">
-            {footer?.menu && header.shop.primaryDomain?.url && (
-              <FooterMenu
-                menu={footer.menu}
-                primaryDomainUrl={header.shop.primaryDomain.url}
-                publicStoreDomain={publicStoreDomain}
-              />
-            )}
+          <footer className="bg-white dark:bg-gray-900">
+            <div className="mx-auto max-w-7xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
+              <div className="mt-16 border-t border-gray-100 dark:border-gray-800 pt-8 sm:flex sm:items-center sm:justify-between">
+                <p className="text-center text-sm text-gray-500 sm:text-left dark:text-gray-400">
+                  &copy; {new Date().getFullYear()} {header.shop.name}. All
+                  rights reserved.
+                </p>
+                {footer?.menu && header.shop.primaryDomain?.url && (
+                  <FooterMenu
+                    menu={footer.menu}
+                    primaryDomainUrl={header.shop.primaryDomain.url}
+                    publicStoreDomain={publicStoreDomain}
+                  />
+                )}
+              </div>
+            </div>
           </footer>
         )}
       </Await>
@@ -42,33 +50,48 @@ function FooterMenu({
   publicStoreDomain: string;
 }) {
   return (
-    <nav className="footer-menu" role="navigation">
-      {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
-        if (!item.url) return null;
-        // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
-        const isExternal = !url.startsWith('/');
-        return isExternal ? (
-          <a href={url} key={item.id} rel="noopener noreferrer" target="_blank">
-            {item.title}
-          </a>
-        ) : (
-          <NavLink
-            end
-            key={item.id}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
-        );
-      })}
+    <nav role="navigation">
+      <ul className="mt-4 flex flex-wrap justify-center gap-4 text-sm sm:mt-0 lg:justify-end">
+        {(menu || FALLBACK_FOOTER_MENU).items.map((item) => {
+          if (!item.url) return null;
+          // if the url is internal, we strip the domain
+          const url =
+            item.url.includes('myshopify.com') ||
+            item.url.includes(publicStoreDomain) ||
+            item.url.includes(primaryDomainUrl)
+              ? new URL(item.url).pathname
+              : item.url;
+          const isExternal = !url.startsWith('/');
+
+          const linkClasses =
+            'text-gray-500 transition hover:opacity-75 dark:text-gray-400';
+
+          return (
+            <li key={item.id}>
+              {isExternal ? (
+                <a
+                  href={url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className={linkClasses}
+                >
+                  {item.title}
+                </a>
+              ) : (
+                <NavLink
+                  end
+                  prefetch="intent"
+                  style={activeLinkStyle}
+                  to={url}
+                  className={linkClasses}
+                >
+                  {item.title}
+                </NavLink>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </nav>
   );
 }
@@ -124,6 +147,6 @@ function activeLinkStyle({
 }) {
   return {
     fontWeight: isActive ? 'bold' : undefined,
-    color: isPending ? 'grey' : 'white',
+    color: isPending ? 'grey' : undefined,
   };
 }
