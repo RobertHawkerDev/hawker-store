@@ -17,10 +17,10 @@ export function Footer({
     <Suspense>
       <Await resolve={footerPromise}>
         {(footer) => (
-          <footer className="bg-white dark:bg-gray-900">
+          <footer className="bg-white">
             <div className="mx-auto max-w-7xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
-              <div className="mt-16 border-t border-gray-100 dark:border-gray-800 pt-8 sm:flex sm:items-center sm:justify-between">
-                <p className="text-center text-sm text-gray-500 sm:text-left dark:text-gray-400">
+              <div className="mt-16 border-t border-gray-100 pt-8 sm:flex sm:items-center sm:justify-between">
+                <p className="text-center text-sm text-gray-500 sm:text-left">
                   &copy; {new Date().getFullYear()} {header.shop.name}. All
                   rights reserved.
                 </p>
@@ -63,8 +63,7 @@ function FooterMenu({
               : item.url;
           const isExternal = !url.startsWith('/');
 
-          const linkClasses =
-            'text-gray-500 transition hover:opacity-75 dark:text-gray-400';
+          const linkClasses = 'text-gray-500 transition hover:opacity-75';
 
           return (
             <li key={item.id}>

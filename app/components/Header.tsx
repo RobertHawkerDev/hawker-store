@@ -26,7 +26,7 @@ export function Header({
   const {shop, menu} = header;
 
   return (
-    <nav className="bg-white dark:bg-gray-800 antialiased">
+    <nav className="bg-white sticky z-50 top-0 antialiased">
       <div className="max-w-7xl px-4 mx-auto 2xl:px-0 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-8">
@@ -35,7 +35,7 @@ export function Header({
                 prefetch="intent"
                 to="/"
                 end
-                className="flex text-xl font-bold text-gray-900 dark:text-white"
+                className="flex text-xl font-bold text-gray-900"
               >
                 <strong>{shop.name}</strong>
               </NavLink>
@@ -71,9 +71,9 @@ export function HeaderMenu({
 
   if (viewport === 'mobile') {
     return (
-      <div className="bg-gray-50 dark:bg-gray-700 dark:border-gray-600 border border-gray-200 rounded-lg py-3 px-4 mt-4">
+      <div className="bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 mt-4">
         <ul
-          className="text-gray-900 dark:text-white text-sm font-medium space-y-3"
+          className="text-gray-900 text-sm font-medium space-y-3"
           role="navigation"
         >
           <li>
@@ -82,7 +82,7 @@ export function HeaderMenu({
               onClick={close}
               prefetch="intent"
               to="/"
-              className="hover:text-primary-700 dark:hover:text-primary-500"
+              className="hover:text-primary-700"
             >
               Home
             </NavLink>
@@ -101,7 +101,7 @@ export function HeaderMenu({
                   onClick={close}
                   prefetch="intent"
                   to={url}
-                  className="hover:text-primary-700 dark:hover:text-primary-500"
+                  className="hover:text-primary-700"
                 >
                   {item.title}
                 </NavLink>
@@ -134,10 +134,8 @@ export function HeaderMenu({
               prefetch="intent"
               to={url}
               className={({isActive}) =>
-                `flex text-sm font-medium hover:text-primary-700 dark:hover:text-primary-500 ${
-                  isActive
-                    ? 'text-primary-700 dark:text-primary-500 font-bold'
-                    : 'text-gray-900 dark:text-white'
+                `flex text-sm font-medium hover:text-primary-700 ${
+                  isActive ? 'text-primary-700 font-bold' : 'text-gray-900'
                 }`
               }
             >
@@ -160,7 +158,7 @@ function HeaderCtas({
       <NavLink
         prefetch="intent"
         to="/account"
-        className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white"
+        className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 text-sm font-medium leading-none text-gray-900"
       >
         <svg
           className="w-5 h-5 lg:me-1"
@@ -195,7 +193,7 @@ function HeaderMenuMobileToggle() {
   const {open} = useAside();
   return (
     <button
-      className="inline-flex lg:hidden items-center justify-center hover:bg-gray-100 rounded-md dark:hover:bg-gray-700 p-2 text-gray-900 dark:text-white"
+      className="inline-flex lg:hidden items-center justify-center hover:bg-gray-100 rounded-md p-2 text-gray-900"
       onClick={() => open('mobile')}
     >
       <span className="sr-only">Open Menu</span>
@@ -223,7 +221,7 @@ function SearchToggle() {
   const {open} = useAside();
   return (
     <button
-      className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white"
+      className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 text-sm font-medium leading-none text-gray-900"
       onClick={() => open('search')}
     >
       <span className="sr-only">Search</span>
@@ -255,7 +253,7 @@ function CartBadge({count}: {count: number}) {
   return (
     <a
       href="/cart"
-      className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white relative"
+      className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 text-sm font-medium leading-none text-gray-900 relative"
       onClick={(e) => {
         e.preventDefault();
         open('cart');
@@ -288,7 +286,7 @@ function CartBadge({count}: {count: number}) {
       <span className="hidden sm:flex">My Cart</span>
       <span
         aria-label={`(items: ${count})`}
-        className="inline-flex items-center justify-center w-5 h-5 ms-2 text-xs font-semibold text-primary-800 bg-primary-100 rounded-full dark:bg-primary-900 dark:text-primary-300"
+        className="inline-flex items-center justify-center w-5 h-5 ms-2 text-xs font-semibold text-primary-800 bg-primary-100 rounded-full"
       >
         {count}
       </span>
