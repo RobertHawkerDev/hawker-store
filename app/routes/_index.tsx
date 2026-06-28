@@ -231,6 +231,11 @@ const FEATURED_COLLECTION_QUERY = `#graphql
             amount
             currencyCode
           }
+          # Add this block right here to satisfy the ProductItem type rules
+          maxVariantPrice {
+            amount
+            currencyCode
+          }
         }
         featuredImage {
           id

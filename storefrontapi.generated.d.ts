@@ -392,6 +392,10 @@ export type CollectionDetailsFragment = Pick<
             StorefrontAPI.MoneyV2,
             'amount' | 'currencyCode'
           >;
+          maxVariantPrice: Pick<
+            StorefrontAPI.MoneyV2,
+            'amount' | 'currencyCode'
+          >;
         };
         featuredImage?: StorefrontAPI.Maybe<
           Pick<
@@ -423,6 +427,10 @@ export type FeaturedCollectionsQuery = {
                 StorefrontAPI.MoneyV2,
                 'amount' | 'currencyCode'
               >;
+              maxVariantPrice: Pick<
+                StorefrontAPI.MoneyV2,
+                'amount' | 'currencyCode'
+              >;
             };
             featuredImage?: StorefrontAPI.Maybe<
               Pick<
@@ -445,6 +453,10 @@ export type FeaturedCollectionsQuery = {
           Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'> & {
             priceRange: {
               minVariantPrice: Pick<
+                StorefrontAPI.MoneyV2,
+                'amount' | 'currencyCode'
+              >;
+              maxVariantPrice: Pick<
                 StorefrontAPI.MoneyV2,
                 'amount' | 'currencyCode'
               >;
@@ -473,6 +485,10 @@ export type FeaturedCollectionsQuery = {
                 StorefrontAPI.MoneyV2,
                 'amount' | 'currencyCode'
               >;
+              maxVariantPrice: Pick<
+                StorefrontAPI.MoneyV2,
+                'amount' | 'currencyCode'
+              >;
             };
             featuredImage?: StorefrontAPI.Maybe<
               Pick<
@@ -495,6 +511,10 @@ export type FeaturedCollectionsQuery = {
           Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'> & {
             priceRange: {
               minVariantPrice: Pick<
+                StorefrontAPI.MoneyV2,
+                'amount' | 'currencyCode'
+              >;
+              maxVariantPrice: Pick<
                 StorefrontAPI.MoneyV2,
                 'amount' | 'currencyCode'
               >;
@@ -523,6 +543,10 @@ export type FeaturedCollectionsQuery = {
                 StorefrontAPI.MoneyV2,
                 'amount' | 'currencyCode'
               >;
+              maxVariantPrice: Pick<
+                StorefrontAPI.MoneyV2,
+                'amount' | 'currencyCode'
+              >;
             };
             featuredImage?: StorefrontAPI.Maybe<
               Pick<
@@ -545,6 +569,10 @@ export type FeaturedCollectionsQuery = {
           Pick<StorefrontAPI.Product, 'id' | 'title' | 'handle'> & {
             priceRange: {
               minVariantPrice: Pick<
+                StorefrontAPI.MoneyV2,
+                'amount' | 'currencyCode'
+              >;
+              maxVariantPrice: Pick<
                 StorefrontAPI.MoneyV2,
                 'amount' | 'currencyCode'
               >;
@@ -1394,7 +1422,7 @@ interface GeneratedQueryTypes {
     return: FooterQuery;
     variables: FooterQueryVariables;
   };
-  '#graphql\n  fragment CollectionDetails on Collection {\n    id\n    title\n    handle\n    image {\n      id\n      url\n      altText\n      width\n      height\n    }\n    products(first: 4) {\n      nodes {\n        id\n        title\n        handle\n        priceRange {\n          minVariantPrice {\n            amount\n            currencyCode\n          }\n        }\n        featuredImage {\n          id\n          url\n          altText\n          width\n          height\n        }\n      }\n    }\n  }\n  \n  query FeaturedCollections($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    # Query specific collections by their handles\n    beltsCollection: collection(handle: "belts") {\n      ...CollectionDetails\n    }\n    socksCollection: collection(handle: "socks") {\n      ...CollectionDetails\n    }\n    shoesCollection: collection(handle: "shoes") {\n      ...CollectionDetails\n    }\n    trousersCollection: collection(handle: "trousers") {\n      ...CollectionDetails\n    }\n    shirtsCollection: collection(handle: "shirts") {\n      ...CollectionDetails\n    }\n    jacketsCollection: collection(handle: "jackets") {\n      ...CollectionDetails\n    }\n  }\n': {
+  '#graphql\n  fragment CollectionDetails on Collection {\n    id\n    title\n    handle\n    image {\n      id\n      url\n      altText\n      width\n      height\n    }\n    products(first: 4) {\n      nodes {\n        id\n        title\n        handle\n        priceRange {\n          minVariantPrice {\n            amount\n            currencyCode\n          }\n          # Add this block right here to satisfy the ProductItem type rules\n          maxVariantPrice {\n            amount\n            currencyCode\n          }\n        }\n        featuredImage {\n          id\n          url\n          altText\n          width\n          height\n        }\n      }\n    }\n  }\n  \n  query FeaturedCollections($country: CountryCode, $language: LanguageCode)\n    @inContext(country: $country, language: $language) {\n    # Query specific collections by their handles\n    beltsCollection: collection(handle: "belts") {\n      ...CollectionDetails\n    }\n    socksCollection: collection(handle: "socks") {\n      ...CollectionDetails\n    }\n    shoesCollection: collection(handle: "shoes") {\n      ...CollectionDetails\n    }\n    trousersCollection: collection(handle: "trousers") {\n      ...CollectionDetails\n    }\n    shirtsCollection: collection(handle: "shirts") {\n      ...CollectionDetails\n    }\n    jacketsCollection: collection(handle: "jackets") {\n      ...CollectionDetails\n    }\n  }\n': {
     return: FeaturedCollectionsQuery;
     variables: FeaturedCollectionsQueryVariables;
   };
